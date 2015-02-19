@@ -25,6 +25,8 @@ class CreateClientPostRequest extends Request {
 			'client_name'    => 'required|min:3|max:255',
             'package'        => 'required',
             'influencer'     => 'required',
+            'contract_value' => 'integer',
+            'onboarded'      => 'boolean'
 		];
 	}
 

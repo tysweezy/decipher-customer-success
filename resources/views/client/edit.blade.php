@@ -1,6 +1,10 @@
 @extends('app')
 
 @section('content')
+<div id="ytd-form">
+    @include('partials.ytd')
+</div>
+
     <h2>Edit Client</h2>
 
 @if ($errors->any())

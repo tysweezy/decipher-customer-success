@@ -44,9 +44,16 @@ class ClientController extends Controller {
 	 */
 	public function store(CreateClientPostRequest $request)
 	{
-	    //$request = \Request::all();
+        // Create client with all requests from form
 
-        Client::create($request->all());
+        //Client::create($request->all());
+        Client::create([
+            'client_name'    => Input::get('client_name'),
+            'package'        => Input::get('package'),
+            'influencer'     => Input::get('influencer'),
+            'contract_value' => (int) Input::get('contract_value'),
+            'onboarded'      => Input::get('onboarded')
+        ]);
 
         return redirect('/');
 	}
@@ -87,6 +94,8 @@ class ClientController extends Controller {
 	public function update($id, CreateClientPostRequest $request)
 	{
         $client = Client::findOrFail($id);
+
+        dd($request->all());
 
         $client->update($request->all());
 

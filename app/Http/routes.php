@@ -15,7 +15,7 @@ Route::get('/', 'ClientController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route:get('/client/create', 'ClientController@create');
+Route::get('/client/create', 'ClientController@create');
 Route::post('/client/create', 'ClientController@store');
 
 // edit / update client data
@@ -23,6 +23,11 @@ Route::get('/client/{id}/edit', 'ClientController@edit');
 Route::post('/client/{id}/edit', 'ClientController@update');
 
 Route::get('client/{id}', 'ClientController@show');
+
+// client ytd form routes
+Route::get('/client/ytd/data', 'YtdController@create');
+Route::post('/client/ytd/data', 'YtdController@store');
+
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

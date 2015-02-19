@@ -15,6 +15,8 @@
 
     <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 
+    <h3>Basic Info</h3>
+
     <label for="client_name">Client Name</label>
     <input type="text" name="client_name" placeholder="Client Name" class="form-control"/>
 
@@ -33,5 +35,6 @@
     <input type="submit" value="Create Client" class="btn btn-primary"/>
 
 </form>
+
 
 @stop
