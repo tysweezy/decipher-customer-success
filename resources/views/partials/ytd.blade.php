@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" id="ytd-button" data-toggle="modal" data-target="#ytd-modal">
+<button type="button" class="btn btn-primary btn-sm" id="ytd-button" data-toggle="modal" data-target="#ytd-modal">
     Enter YTD Data
 </button>
 
@@ -11,7 +11,18 @@
                 <h4 class="modal-title">YTD Data</h4>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+
+				@if ($errors->any())
+    				<ul class="alert alert-danger">
+        	        @foreach ($errors->all() as $error)
+            			<li>{{ $error }}</li>
+        	        @endforeach
+    				</ul>
+	            @endif 
+                <form action="http://localhost:8000/client/{{ $client->id }}/ytd/data" method="post">  
+
+  					 <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+
                     <h3>Year-To-Date (Completes)</h3>
 
                     <label for="complete_ytd_used">Used Completes YTD</label>
@@ -27,12 +38,24 @@
                     <input type="text" name="support_hours_ytd_used" placeholder="Used Support Hours YTD (Number)" class="form-control"/>
 
                     <label for="support_hours_ytd_available">Available Support Hours YTD</label>
-                    <input type="text" name="support_hours_ytd_available" placeholder="Available Support Hours (Number)" class="form-control"/>
+                    <input type="text" name="support_hours_ytd_available" placeholder="Available Support Hours (Number)" class="form-control"/> <br>
+
+                    <h3>YTD (Training Hours)</h3>
+
+                    <label for="training_ytd_used">Used Training Hours YTD</label>
+                    <input type="text" name="training_ytd_used" placeholder="Used Support Hours YTD (Number)" class="form-control"/>
+
+                    <label for="training_ytd_available">Available Training Hours YTD</label>
+                    <input type="text" name="training_ytd_available" placeholder="Available Support Hours (Number)" class="form-control"/> <br>
+
+
+                    <input type="submit" value="Save YTD Data" class="btn btn-primary">
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -1,16 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::get('/', 'ClientController@index');
 
 Route::get('home', 'HomeController@index');
@@ -26,7 +15,30 @@ Route::get('client/{id}', 'ClientController@show');
 
 // client ytd form routes
 Route::get('/client/ytd/data', 'YtdController@create');
-Route::post('/client/ytd/data', 'YtdController@store');
+Route::post('/client/{id}/ytd/data', 'ClientController@storeYtdData');
+
+// completes data
+Route::post('/client/{id}/completes/data', 'ClientController@storeCompletesData');
+
+// surveys data
+Route::post('/client/{id}/surveys/data', 'ClientController@storeSurveysData');
+
+// support data
+Route::post('/client/{id}/support/data', 'ClientController@storeSupportData');
+
+// Email Campaign data
+Route::post('/client/{id}/campaign/data', 'ClientController@storeEmailCampaignData');
+
+// Email Sent Data
+Route::post('/client/{id}/sent/data', 'ClientController@storeEmailSentData');
+
+// Helpdesk data
+Route::post('/client/{id}/helpdesk/data', 'ClientController@storeHelpdeskData');
+
+//search
+Route::get('/search', 'ClientController@search');
+
+//Route::get('/spreadsheet', 'ClientController@spreadsheet');
 
 
 Route::controllers([

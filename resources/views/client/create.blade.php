@@ -11,9 +11,10 @@
         @endforeach
     </ul>
 @endif
-<form method="post" action="http://localhost:8000/client/create">
+<!--<form method="post" action="http://localhost:8000/client/create">-->
 
-    <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+{!! Form::open(['url' => '/client/create', 'method' => 'post']) !!}
+    <!--<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>-->
 
     <h3>Basic Info</h3>
 
@@ -34,7 +35,6 @@
 
     <input type="submit" value="Create Client" class="btn btn-primary"/>
 
-</form>
-
+{!! Form::close() !!}
 
 @stop

@@ -34,7 +34,26 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/">Home</a></li>
+
 				</ul>
+
+		
+	  <div id="cs-comp">
+		<a href="/client/create" class="btn btn-sm btn-primary">+ Create Client</a> 
+
+
+         <div class="search-area pull-right">
+
+         {!! Form::open(['method' => 'GET', 'url' => '/search']) !!}
+
+              {!! Form::input('search', 'q', null, ['placeholder' => 'Search Company', 'class' => 'form-control']) !!}		
+	          <!--<input type="text" name="q" placeholder="Search Company"/>-->
+	          <!--<input type="submit" name="search" value="Search">-->
+	          <!--<input type="checkbox" name="show_all"/>
+	          <label for="show_all">Show All Companies</label>-->
+	     {!! Form::close() !!}
+        </div>
+       </div>
 
 				<ul class="nav navbar-nav navbar-right">
 					<!--@if (Auth::guest())
@@ -53,26 +72,23 @@
 		</div>
 	</nav>
 
-    <div class="main-bar">
-      <div class="container-fluid">
-        <a href="/client/create" class="btn btn-primary">+ Create Client</a>
+
+  <div class="container-fluid"> 
+	
+	@if (Session::has('success'))
+		<div class="alert alert-success">{{ Session::get('success') }}</div>
+	@endif
 
 
+	@if (Session::has('message'))
+		<div class="alert alert-info">{{ Session::get('info') }}</div>
+	@endif
 
+	@if (Session::has('error'))
+		<div class="alert alert-danger">{{ Session::get('error') }}</div>
+	@endif
+	
 
-         <div class="search-area pull-right">
-          <input type="text" name="q" placeholder="Search Company"/>
-          <input type="submit" name="search" value="Search">
-          <input type="checkbox" name="show_all"/>
-          <label for="show_all">Show All Companies</label>
-        </div>
-      </div>
-
-
-    </div>
-
-
-  <div class="container-fluid">
     @yield('content')
   </div>
 

@@ -1,6 +1,9 @@
 @extends('app')
 
 @section('content')
+    
+    <a href="/client/{{ $client->id }}/edit" class="btn btn-warning pull-right">Edit Client Details</a>
+
     <h4>Company Name: {{ $client->client_name }}</h4>
     <h4>Package: {{ $client->package }}</h4>
     <h4>Decision Maker: {{ $client->influencer }}</h4>
@@ -64,7 +67,7 @@
  @section('scripts')
      <script src="/js/highcharts.js"></script>
      <script src="/js/modules/exporting.js"></script>
-    <script type="text/javascript">
+    <script>
         (function() {
 
             var YTD_data = {
@@ -73,24 +76,24 @@
                     title : 'Completes YTD',
                     xAxisText : 'Completes',
                     yAxisText : 'Completes (Qualified)',
-                    series1data : [155455],
-                    series2data : [200000]
+                    series1data : [{{ json_encode(intval($ytd->completes_ytd_used)) }}],
+                    series2data : [{{ json_encode(intval($ytd->completes_ytd_available)) }}]
                 },
                 support : {
                     id : '#support-hours-ytd',
                     title : 'Support Hours YTD',
                     xAxisText : 'Support Hours',
                     yAxisText : 'Hours',
-                    series1data : [48],
-                    series2data : [60]
+                    series1data : [{{ json_encode(intval($ytd->support_ytd_used)) }}],
+                    series2data : [{{ json_encode(intval($ytd->support_ytd_available)) }}]
                 },
                 training : {
                     id : '#training-hours-ytd',
                     title : 'Training Hours YTD',
                     xAxisText : 'Training Hours',
                     yAxisText : 'Hours',
-                    series1data : [1],
-                    series2data : [6]
+                    series1data : [{{ json_encode(intval($ytd->training_ytd_used)) }}],
+                    series2data : [{{ json_encode(intval($ytd->training_ytd_available)) }}]
                 },
             }
 
@@ -145,7 +148,17 @@
                 },
                 series: [{
                     name: 'Completes',
-                    data: [1448,14910,13784,11563,21555,14035,13133,20883,19366,23650,1595]
+                    data: [{{ json_encode(intval($complete->apr_14)) }}, 
+                           {{ json_encode(intval($complete->may_14)) }}, 
+                           {{ json_encode(intval($complete->jun_14)) }}, 
+                           {{ json_encode(intval($complete->jul_14)) }}, 
+                           {{ json_encode(intval($complete->aug_14)) }},
+                           {{ json_encode(intval($complete->sep_14)) }},
+                           {{ json_encode(intval($complete->oct_14)) }}, 
+                           {{ json_encode(intval($complete->nov_14)) }},
+                           {{ json_encode(intval($complete->dec_14)) }},
+                           {{ json_encode(intval($complete->jan_15)) }},
+                           {{ json_encode(intval($complete->feb_15)) }}]
                 }],
                 exporting: {
                     enabled: false
@@ -164,11 +177,31 @@
             series: [{
                 type: 'column',
                 name: 'Created Surveys',
-                data: [5,31,24,40,23,18,12,13,7,8,0]
+                data: [{{ json_encode(intval($survey->apr_14_created)) }},
+                {{ json_encode(intval($survey->may_14_created)) }},
+                {{ json_encode(intval($survey->jun_14_created)) }},
+                {{ json_encode(intval($survey->jul_14_created)) }},
+                {{ json_encode(intval($survey->aug_14_created)) }},
+                {{ json_encode(intval($survey->sep_14_created)) }},
+                {{ json_encode(intval($survey->oct_14_created)) }},
+                {{ json_encode(intval($survey->nov_14_created)) }},
+                {{ json_encode(intval($survey->dec_14_created)) }},
+                {{ json_encode(intval($survey->jan_15_created)) }},
+                {{ json_encode(intval($survey->feb_15_created)) }}]
             }, {
                 type: 'column',
                 name: 'Launched Surveys',
-                data: [8,19,18,20,23,14,27,18,20,13,3]
+                data: [{{ json_encode(intval($survey->apr_14_launched)) }},
+                        {{ json_encode(intval($survey->may_14_launched)) }},
+                        {{ json_encode(intval($survey->jun_14_launched)) }},
+                        {{ json_encode(intval($survey->jul_14_launched)) }},
+                        {{ json_encode(intval($survey->aug_14_launched)) }},
+                        {{ json_encode(intval($survey->sep_14_launched)) }},
+                        {{ json_encode(intval($survey->oct_14_launched)) }},
+                        {{ json_encode(intval($survey->nov_14_launched)) }},
+                        {{ json_encode(intval($survey->dec_14_launched)) }},
+                        {{ json_encode(intval($survey->jan_15_launched)) }},
+                        {{ json_encode(intval($survey->feb_15_launched)) }}]
             }],
             exporting: {
                 enabled: false
@@ -190,7 +223,17 @@
             },
             series: [{
                 name: 'Support Hours',
-                data: [0,0,0,0,38.25,2.25,2.25,2.5,.25,1.5,0]
+                data: [{{ json_encode(intval($support->apr_14)) }}, 
+                           {{ json_encode(intval($support->may_14)) }}, 
+                           {{ json_encode(intval($support->jun_14)) }}, 
+                           {{ json_encode(intval($support->jul_14)) }}, 
+                           {{ json_encode(intval($support->aug_14)) }},
+                           {{ json_encode(intval($support->sep_14)) }},
+                           {{ json_encode(intval($support->oct_14)) }}, 
+                           {{ json_encode(intval($support->nov_14)) }},
+                           {{ json_encode(intval($support->dec_14)) }},
+                           {{ json_encode(intval($support->jan_15)) }},
+                           {{ json_encode(intval($support->feb_15)) }}]
             }],
             exporting: {
                 enabled: false
@@ -211,7 +254,17 @@
             },
             series: [{
                 name: 'Email Campaigns',
-                data: [0,0,0,0,0,0,0,0,0,0,0]
+                data: [{{ json_encode(intval($campaign->apr_14)) }}, 
+                           {{ json_encode(intval($campaign->may_14)) }}, 
+                           {{ json_encode(intval($campaign->jun_14)) }}, 
+                           {{ json_encode(intval($campaign->jul_14)) }}, 
+                           {{ json_encode(intval($campaign->aug_14)) }},
+                           {{ json_encode(intval($campaign->sep_14)) }},
+                           {{ json_encode(intval($campaign->oct_14)) }}, 
+                           {{ json_encode(intval($campaign->nov_14)) }},
+                           {{ json_encode(intval($campaign->dec_14)) }},
+                           {{ json_encode(intval($campaign->jan_15)) }},
+                           {{ json_encode(intval($campaign->feb_15)) }}]
             }],
             exporting: {
                 enabled: false
@@ -234,7 +287,17 @@
             },
             series: [{
                 name: 'Emails Sent',
-                data: [0,0,0,0,0,0,0,0,0,0,0]
+                data: [{{ json_encode(intval($sent->apr_14)) }}, 
+                           {{ json_encode(intval($sent->may_14)) }}, 
+                           {{ json_encode(intval($sent->jun_14)) }}, 
+                           {{ json_encode(intval($sent->jul_14)) }}, 
+                           {{ json_encode(intval($sent->aug_14)) }},
+                           {{ json_encode(intval($sent->sep_14)) }},
+                           {{ json_encode(intval($sent->oct_14)) }}, 
+                           {{ json_encode(intval($sent->nov_14)) }},
+                           {{ json_encode(intval($sent->dec_14)) }},
+                           {{ json_encode(intval($sent->jan_15)) }},
+                           {{ json_encode(intval($sent->feb_15)) }}]
             }],
             exporting: {
                 enabled: false
@@ -256,7 +319,17 @@
             },
             series: [{
                 name: 'Helpdesk Tickets',
-                data: [0,0,0,0,0,0,0,0,0,0,0]
+                data: [{{ json_encode(intval($helpdesk->apr_14)) }}, 
+                           {{ json_encode(intval($helpdesk->may_14)) }}, 
+                           {{ json_encode(intval($helpdesk->jun_14)) }}, 
+                           {{ json_encode(intval($helpdesk->jul_14)) }}, 
+                           {{ json_encode(intval($helpdesk->aug_14)) }},
+                           {{ json_encode(intval($helpdesk->sep_14)) }},
+                           {{ json_encode(intval($helpdesk->oct_14)) }}, 
+                           {{ json_encode(intval($helpdesk->nov_14)) }},
+                           {{ json_encode(intval($helpdesk->dec_14)) }},
+                           {{ json_encode(intval($helpdesk->jan_15)) }},
+                           {{ json_encode(intval($helpdesk->feb_15)) }}]
             }],
             exporting: {
                 enabled: false

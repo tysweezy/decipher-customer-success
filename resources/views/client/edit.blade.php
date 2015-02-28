@@ -1,9 +1,20 @@
 @extends('app')
 
+
+
+
 @section('content')
-<div id="ytd-form">
+
+<div id="data-nav">
     @include('partials.ytd')
+    @include('partials.completes')
+    @include('partials.surveys')
+    @include('partials.support')
+    @include('partials.emailcampaigns')
+    @include('partials.emailsent')
+    @include('partials.helpdesk')
 </div>
+
 
     <h2>Edit Client</h2>
 
@@ -14,7 +25,8 @@
     @endforeach
 </ul>
 @endif
-    <form method="post" action="http://localhost:8000/client/{{{ $client->id }}}/edit/">
+    <!--<form method="post" action="http://localhost:8000/client/{{{ $client->id }}}/edit/">-->
+    {!! Form::open(['url' => '/client/' . $client->id . '/edit/', 'method' => 'post']) !!}
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 
         <label for="client_name">Client Name</label>

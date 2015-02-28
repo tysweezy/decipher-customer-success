@@ -4,7 +4,7 @@
     <h2>Clients</h2>
 
    	@if(count($clients) === 0)
-		<div class="alert alert-info">You haven't created any clients yet.</div>
+		<div class="alert alert-info">No results.</div>
 	 @else
 
 	 <table class="table table-striped">
